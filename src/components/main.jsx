@@ -9,6 +9,7 @@ import Products from "../pages/products";
 import Checkout from "./testPages/checkout";
 import ProductDetails from "./testPages/productDetails";
 import ProductsPage from "./testPages/productsPage"
+import AddProduct from "./testPages/addProduct";
 
 import SignUp from './testPages/signUp';
 
@@ -23,6 +24,7 @@ const Main = () => (
     <Route exact path="/checkout" component={Checkout} />
     <Route exact path="/productDetails" component={ProductDetails} />
     <Route exact path="/productsPage" component={ProductsPage} />
+    <Route exact path="/addproduct" component={AddProduct} />
     <Route exact path="/signUp" component={SignUp} />
     <Route exact path="/" component={Home} />
   </Switch>
