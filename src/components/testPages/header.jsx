@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import $ from 'jquery';
 
 
@@ -8,6 +9,9 @@ const HeaderStyle = styled.div`
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,800');
 @import url('https://fonts.googleapis.com/css?family=Lobster');
 
+a {
+  text-decoration: none;
+}
 .button {
   display: inline-block;
   margin-top: 20px;
@@ -330,18 +334,18 @@ class Header extends Component {
 
               <div id="main-nav" class="collapse navbar-collapse ">
                 <ul class="navbar-nav ml-auto">
-                  <li><a href="#" class="nav-item nav-link active">Home</a></li>
-                  <li><a href="#" class="nav-item nav-link">About Us</a></li>
-                  <li><a href="#" class="nav-item nav-link">All Products</a></li>
-                  <li class="dropdown">
+                  <Link to="/"><a href="#" class="nav-item nav-link active">Home</a></Link>
+                  <Link to="/about"><a href="#" class="nav-item nav-link">About Us</a></Link>
+                  <Link to="/productspage"><a href="#" class="nav-item nav-link">All Products</a></Link>
+                  <Link to="/chemicals" class="dropdown">
                     <a href="#" class="nav-item nav-link" data-toggle="dropdown">Chemicals</a>
                     <div class="dropdown-menu">
                       <a href="#" class="dropdown-item">Chemical 1 </a>
                       <a href="#" class="dropdown-item">Chemical 2</a>
                       <a href="#" class="dropdown-item">Chemical 3</a>
                     </div>
-                  </li>
-                  <li class="dropdown">
+                  </Link>
+                  <Link to="equipment" class="dropdown">
                     <a href="#" class="nav-item nav-link" data-toggle="dropdown">Equipment</a>
                     <div class="dropdown-menu">
                       <a href="#" class="dropdown-item">Equipment 1</a>
@@ -350,9 +354,9 @@ class Header extends Component {
                       <a href="#" class="dropdown-item">Equipment 4</a>
                       <a href="#" class="dropdown-item">Equipmen 5</a>
                     </div>
-                  </li>
-                  <li><a href="#" class="nav-item nav-link">Contact</a></li>
-                  <li><a href="#" class="nav-item nav-link">Checkout</a></li>
+                  </Link>
+                  <Link to="/contact"><a href="#" class="nav-item nav-link">Contact</a></Link>
+                  <Link to="/checkout"><a href="#" class="nav-item nav-link">Checkout</a></Link>
                 </ul>
               </div>
             </div>

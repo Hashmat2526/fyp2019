@@ -53,7 +53,7 @@ class Contact extends Component {
                     +92 3158080505
                   </p>
                   <p class="m-0 text-info"><i class="fa fa-envelope" aria-hidden="true"></i>
-                    hashmatajalali@gmail.com
+                    example@gmail.com
                   </p>
                 </div>
                 <div class="col-lg-4 col-4 address-icon text-center text-danger">

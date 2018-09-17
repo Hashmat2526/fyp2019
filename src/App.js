@@ -13,6 +13,7 @@ class App extends Component {
         <Header />
         <div class="clearfix"></div>
         <Main />
+        <Footer />
       </div>
     );
   }

@@ -24,7 +24,6 @@ class Home extends Component {
         <ProductCategory />
         <HelpPage />
         <SellingAd />
-        <Footer />
       </homeStyle>
     );
   }
