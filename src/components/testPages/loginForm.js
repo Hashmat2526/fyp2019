@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Validator from "validator";
-import InlineError from "../messages/InlineError";
+import axios from 'axios';
+const SignUpStyle = styled.div`
 
-const LoginStyle = styled.div`
 :root {
   --.input-padding-x: 1.5rem;
   --.input-padding-y: .75rem;
@@ -110,50 +109,80 @@ const LoginStyle = styled.div`
 .container {
   position: relative;
   top: 32px;
-  
 }
 `
+class Login extends Component {
+  constructor(props) {
+    super(props);
 
-class LoginForm extends Component {
+    this.onChangeEm = this.onChangeEm.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onChangePass = this.onChangePass.bind(this);
+    this.state = { email: '', password: '' };
+  }
 
+  onChangeEm(a) {
+    this.setState({ email: a.target.value });
+  }
+  onChangePass(a) {
+    this.setState({ password: a.target.value });
+  }
+  onSubmit() {
 
+    alert(this.state.email);
+    axios.post('http://localhost:2627/getUser', {
+      email: this.state.email,
+      password: this.state.password
 
+    })
+      .then((response) => {
+        alert("produc has been added");
+        console.log("lll");
+        if (response.data.length == 0) {
+          alert("login Failed");
+        }
+        if (response.data.length != 0) {
+          alert("login Success");
+          this.props.history.push("/");
+        }
+        console.log(response.data);
+
+      })
+      .catch((e) => {
+        console.log("error:");
+        console.log(e);
+      });
+  }
   render() {
-    const { data, errors, loading } = this.state;
     return (
-      <LoginStyle>
+      <SignUpStyle>
         <div class="container">
           <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
               <div class="card card-signin my-5">
                 <div class="card-body">
                   <h5 class="card-title text-center h5">Sign In</h5>
-                  <form class="form-signin form">
+                  <form class="form-signin form"  >
+
                     <div class="form-label-group">
-                      <input type="email" id="inputEmail" class="form-control input" placeholder="Email address" required autofocus />
+                      <input type="email" id="inputEmail" class="form-control input"
+                        value={this.state.email} onChange={this.onChangeEm} placeholder="Email address" required autofocus />
                       <label for="inputEmail" className="label">Email address</label>
                     </div>
                     <div class="form-label-group">
-                      <input type="password" id="inputPassword" class="form-control input" placeholder="Password" required />
+                      <input type="password" id="inputPassword"
+                        value={this.state.password} onChange={this.onChangePass} class="form-control input" placeholder="Password" required />
                       <label for="inputPassword" className="label">Password</label>
                     </div>
-
-                    <div class="custom-control custom-checkbox mb-3">
-                      <input type="checkbox" class="custom-control-input input" id="customCheck1" />
-                      <label class="custom-control-label label" for="customCheck1">Remember password</label>
-                    </div>
-                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
-                    <hr class="my-4" />
-                    <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
-                    <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
+                    <button onClick={this.onSubmit} class="btn btn-lg btn-primary btn-block text-uppercase" type="button">Register</button>
                   </form>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </LoginStyle>);
+      </SignUpStyle>);
   }
 }
 
-export default LoginForm;
+export default Login;

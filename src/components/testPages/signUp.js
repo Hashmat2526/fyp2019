@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-
+import axios from 'axios';
 const SignUpStyle = styled.div`
 
 :root {
@@ -112,7 +112,50 @@ const SignUpStyle = styled.div`
 }
 `
 class SignUp extends Component {
-  state = {}
+  constructor(props) {
+    super(props);
+
+    this.onChangeFN = this.onChangeFN.bind(this);
+    this.onChangeLN = this.onChangeLN.bind(this);
+    this.onChangeEm = this.onChangeEm.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onChangePass = this.onChangePass.bind(this);
+    this.state = { firstName: '', lastName: '', email: '', password: '' };
+  }
+
+  onChangeFN(a) {
+
+    this.setState({ firstName: a.target.value });
+     
+  }
+
+  onChangeLN(a) {
+    this.setState({ lastName: a.target.value });
+  }
+  onChangeEm(a) {
+    this.setState({ email: a.target.value });
+  }
+  onChangePass(a) {
+    this.setState({ password: a.target.value });
+  }
+  onSubmit() {
+
+    alert(this.state.firstName);
+    axios.post('http://localhost:2627/addUser', {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      password: this.state.password
+
+    })
+      .then((response) => {
+        alert("produc has been added");
+      })
+      .catch((e) => {
+        console.log("error:");
+        console.log(e);
+      });
+  }
   render() {
     return (
       <SignUpStyle>
@@ -122,24 +165,29 @@ class SignUp extends Component {
               <div class="card card-signin my-5">
                 <div class="card-body">
                   <h5 class="card-title text-center h5">Sign In</h5>
-                  <form class="form-signin form">
+                  <form class="form-signin form"  >
                     <div class="form-label-group">
-                      <input type="email" id="inputEmail" class="form-control input" placeholder="First Name" required autofocus />
-                      <label for="inputEmail" className="label">First Name</label>
+                      <input type="text" class="form-control input"
+                        placeholder="First Name" required autofocus onChange={this.onChangeFN}
+                        value={this.state.firstName} />
+                      <label className="label" >First Name</label>
                     </div>
                     <div class="form-label-group">
-                      <input type="email" id="inputEmail" class="form-control input" placeholder="Last Name" required autofocus />
-                      <label for="inputEmail" className="label">Last Name</label>
+                      <input type="text" class="form-control input"
+                        value={this.state.lastName} onChange={this.onChangeLN} placeholder="Last Name" required autofocus />
+                      <label className="label">Last Name</label>
                     </div>
                     <div class="form-label-group">
-                      <input type="email" id="inputEmail" class="form-control input" placeholder="Email address" required autofocus />
+                      <input type="email" id="inputEmail" class="form-control input"
+                        value={this.state.email} onChange={this.onChangeEm} placeholder="Email address" required autofocus />
                       <label for="inputEmail" className="label">Email address</label>
                     </div>
                     <div class="form-label-group">
-                      <input type="password" id="inputPassword" class="form-control input" placeholder="Password" required />
+                      <input type="password" id="inputPassword"
+                        value={this.state.password} onChange={this.onChangePass} class="form-control input" placeholder="Password" required />
                       <label for="inputPassword" className="label">Password</label>
                     </div>
-                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
+                    <button onClick={this.onSubmit} class="btn btn-lg btn-primary btn-block text-uppercase" type="button">Register</button>
                   </form>
                 </div>
               </div>

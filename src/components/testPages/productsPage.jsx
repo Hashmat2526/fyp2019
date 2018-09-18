@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 const ProductsStyle = styled.div`
 /*panel*/
 .panel {
@@ -158,6 +159,28 @@ const ProductsStyle = styled.div`
 `
 
 class ProductsPage extends Component {
+  constructor(props) {
+    super(props);
+
+
+    this.state = {
+      response1: []
+
+
+    }
+  };
+  componentDidMount() {
+    axios.get('http://localhost:2627/feedback')
+      .then((response) => {
+        console.log("All Orders Fetched");
+        console.log(response);
+        this.setState({ response1: response.data });
+      }).catch((e) => {
+        console.log("error:");
+        console.log(e);
+      });
+  }
+
   render() {
     return (
       <ProductsStyle>
@@ -175,23 +198,17 @@ class ProductsPage extends Component {
               <div class="panel-body">
                 <ul class="nav prod-cat">
                   <li>
-                    <a href="#" class="active"><i class=" fa fa-angle-right"></i> Dress</a>
+                    <a href="#" class="active"><i class=" fa fa-angle-right"></i> Chemicals</a>
                     <ul class="nav">
-                      <li class="active"><a href="#">- Shirt</a></li>
-                      <li><a href="#">- Pant</a></li>
-                      <li><a href="#">- Shoes</a></li>
+                      <li class="active"><a href="#">- chemical 1</a></li>
+                      <li><a href="#">- chemical 2</a></li>
+                      <li><a href="#">- chemical 3</a></li>
                     </ul>
                   </li>
-                  <li><a href="#"><i class=" fa fa-angle-right"></i> Bags &amp; Purses</a></li>
-                  <li><a href="#"><i class=" fa fa-angle-right"></i> Beauty</a></li>
-                  <li><a href="#"><i class=" fa fa-angle-right"></i> Coat &amp; Jacket</a></li>
-                  <li><a href="#"><i class=" fa fa-angle-right"></i> Jeans</a></li>
-                  <li><a href="#"><i class=" fa fa-angle-right"></i> Jewellery</a></li>
-                  <li><a href="#"><i class=" fa fa-angle-right"></i> Electronics</a></li>
-                  <li><a href="#"><i class=" fa fa-angle-right"></i> Sports</a></li>
-                  <li><a href="#"><i class=" fa fa-angle-right"></i> Technology</a></li>
-                  <li><a href="#"><i class=" fa fa-angle-right"></i> Watches</a></li>
-                  <li><a href="#"><i class=" fa fa-angle-right"></i> Accessories</a></li>
+                  <li><a href="#"><i class=" fa fa-angle-right"></i> Equipment &amp; Equipment</a></li>
+                  <li><a href="#"><i class=" fa fa-angle-right"></i> Lab Equipment</a></li>
+                  <li><a href="#"><i class=" fa fa-angle-right"></i> Analytical &amp; Clinical</a></li>
+
                 </ul>
               </div>
             </section>
@@ -215,29 +232,20 @@ class ProductsPage extends Component {
                   <div class="form-group">
                     <label>Brand</label>
                     <select class="form-control hasCustomSelect" style={{ width: "231px", position: "absolute", opacity: "0", height: "34px", fontSize: "12px" }}>
-                      <option>Wallmart</option>
-                      <option>Catseye</option>
-                      <option>Moonsoon</option>
-                      <option>Textmart</option>
+                      <option>ThermoFisher</option>
+                      <option>Bio Rad</option>
+                      <option>Huber</option>
+                      <option>Metrohm</option>
                     </select><span class="customSelect form-control" style={{ display: "inline-block" }}> <span class="customSelectInner" style={{ width: "209px", display: "inline-block" }}>Wallmart</span></span>
                   </div>
                   <div class="form-group">
-                    <label>Color</label>
+                    <label>Model</label>
                     <select class="form-control hasCustomSelect" style={{ webkitAppearance: "menulist-button", width: "231px", position: "absolute", opacity: "0", height: "34px", fontSize: "12px" }}>
-                      <option>White</option>
-                      <option>Black</option>
-                      <option>Red</option>
-                      <option>Green</option>
+                      <option>Nano</option>
+                      <option>Mano</option>
+                      <option>Shuno</option>
+                      <option>Tono</option>
                     </select><span class="customSelect form-control" style={{ display: "inline-block" }}><span class="customSelectInner" style={{ width: "209px", display: "inline-block" }}>White</span></span>
-                  </div>
-                  <div class="form-group">
-                    <label>Type</label>
-                    <select class="form-control hasCustomSelect" style={{ webkitAppearance: "menulist-button", width: "231px", position: "absolute", opacity: "0", height: "34px", fontSize: "12px" }}>
-                      <option>Small</option>
-                      <option>Medium</option>
-                      <option>Large</option>
-                      <option>Extra Large</option>
-                    </select><span class="customSelect form-control" style={{ display: "inline-block" }}><span class="customSelectInner" style={{ width: "209px", display: "inline-block" }}>Small</span></span>
                   </div>
                   <button class="btn btn-primary" type="submit">Filter</button>
                 </form>
@@ -251,7 +259,7 @@ class ProductsPage extends Component {
                 <div class="best-seller">
                   <article class="media">
                     <a class="pull-left thumb p-thumb">
-                      <img src="http://thevectorlab.net/flatlab/img/product1.jpg" />
+                      <img src="https://via.placeholder.com/279x222" />
                     </a>
                     <div class="media-body">
                       <a href="#" class=" p-head">Item One Tittle</a>
@@ -260,7 +268,7 @@ class ProductsPage extends Component {
                   </article>
                   <article class="media">
                     <a class="pull-left thumb p-thumb">
-                      <img src="http://thevectorlab.net/flatlab/img/product2.png" />
+                      <img src="https://via.placeholder.com/279x222" />
                     </a>
                     <div class="media-body">
                       <a href="#" class=" p-head">Item Two Tittle</a>
@@ -269,7 +277,7 @@ class ProductsPage extends Component {
                   </article>
                   <article class="media">
                     <a class="pull-left thumb p-thumb">
-                      <img src="http://thevectorlab.net/flatlab/img/product3.png" />
+                      <img src="https://via.placeholder.com/279x222" />
                     </a>
                     <div class="media-body">
                       <a href="#" class=" p-head">Item Three Tittle</a>
@@ -296,10 +304,34 @@ class ProductsPage extends Component {
             </section>
 
             <div class="row product-list">
+              {this.state.response1 != null && this.state.response1.map(function (p, key) {
+
+                return (
+                  <div class="col-md-4">
+                    <section class="panel">
+                      <div class="pro-img-box">
+                        <Link to={"/productDetails/" + p._id} >
+                          <img src="https://via.placeholder.com/279x222" alt="" /></Link>
+                        <a href="#" class="adtocart">
+                          <i class="fa fa-shopping-cart"></i>
+                        </a>
+                      </div>
+
+                      <div class="panel-body text-center">
+                        <h4>
+                          <a href="#" class="pro-title">
+                            {p.name}
+                          </a>
+                        </h4>
+                        <p class="price">{p.price}</p>
+                      </div>
+                    </section>
+                  </div>);
+              }, this)}
               <div class="col-md-4">
                 <section class="panel">
                   <div class="pro-img-box">
-                    <img src="http://thevectorlab.net/flatlab/img/product-list/pro-1.jpg" alt="" />
+                    <img src="https://via.placeholder.com/279x222" alt="" />
                     <a href="#" class="adtocart">
                       <i class="fa fa-shopping-cart"></i>
                     </a>
@@ -308,7 +340,7 @@ class ProductsPage extends Component {
                   <div class="panel-body text-center">
                     <h4>
                       <a href="#" class="pro-title">
-                        Leopard Shirt Dress
+                        Prpduct Name
                           </a>
                     </h4>
                     <p class="price">$300.00</p>
@@ -318,7 +350,7 @@ class ProductsPage extends Component {
               <div class="col-md-4">
                 <section class="panel">
                   <div class="pro-img-box">
-                    <img src="http://thevectorlab.net/flatlab/img/product-list/pro1.jpg" alt="" />
+                    <img src="https://via.placeholder.com/279x222" alt="" />
                     <a href="#" class="adtocart">
                       <i class="fa fa-shopping-cart"></i>
                     </a>
@@ -327,7 +359,7 @@ class ProductsPage extends Component {
                   <div class="panel-body text-center">
                     <h4>
                       <a href="#" class="pro-title">
-                        Leopard Shirt Dress
+                        Prpduct Name
                           </a>
                     </h4>
                     <p class="price">$300.00</p>
@@ -337,7 +369,7 @@ class ProductsPage extends Component {
               <div class="col-md-4">
                 <section class="panel">
                   <div class="pro-img-box">
-                    <img src="http://thevectorlab.net/flatlab/img/product-list/pro2.jpg" alt="" />
+                    <img src="https://via.placeholder.com/279x222" alt="" />
                     <a href="#" class="adtocart">
                       <i class="fa fa-shopping-cart"></i>
                     </a>
@@ -346,7 +378,7 @@ class ProductsPage extends Component {
                   <div class="panel-body text-center">
                     <h4>
                       <a href="#" class="pro-title">
-                        Leopard Shirt Dress
+                        Prpduct Name
                           </a>
                     </h4>
                     <p class="price">$300.00</p>
@@ -356,7 +388,7 @@ class ProductsPage extends Component {
               <div class="col-md-4">
                 <section class="panel">
                   <div class="pro-img-box">
-                    <img src="http://thevectorlab.net/flatlab/img/product-list/pro3.jpg" alt="" />
+                    <img src="https://via.placeholder.com/279x222" alt="" />
                     <a href="#" class="adtocart">
                       <i class="fa fa-shopping-cart"></i>
                     </a>
@@ -365,7 +397,7 @@ class ProductsPage extends Component {
                   <div class="panel-body text-center">
                     <h4>
                       <a href="#" class="pro-title">
-                        Leopard Shirt Dress
+                        Prpduct Name
                           </a>
                     </h4>
                     <p class="price">$300.00</p>
@@ -375,7 +407,7 @@ class ProductsPage extends Component {
               <div class="col-md-4">
                 <section class="panel">
                   <div class="pro-img-box">
-                    <img src="http://thevectorlab.net/flatlab/img/product-list/pro-1.jpg" alt="" />
+                    <img src="https://via.placeholder.com/279x222" alt="" />
                     <a href="#" class="adtocart">
                       <i class="fa fa-shopping-cart"></i>
                     </a>
@@ -384,7 +416,7 @@ class ProductsPage extends Component {
                   <div class="panel-body text-center">
                     <h4>
                       <a href="#" class="pro-title">
-                        Leopard Shirt Dress
+                        Prpduct Name
                           </a>
                     </h4>
                     <p class="price">$300.00</p>
@@ -394,7 +426,7 @@ class ProductsPage extends Component {
               <div class="col-md-4">
                 <section class="panel">
                   <div class="pro-img-box">
-                    <img src="http://thevectorlab.net/flatlab/img/product-list/pro2.jpg" alt="" />
+                    <img src="https://via.placeholder.com/279x222" alt="" />
                     <a href="#" class="adtocart">
                       <i class="fa fa-shopping-cart"></i>
                     </a>
@@ -403,7 +435,7 @@ class ProductsPage extends Component {
                   <div class="panel-body text-center">
                     <h4>
                       <a href="#" class="pro-title">
-                        Leopard Shirt Dress
+                        Prpduct Name
                           </a>
                     </h4>
                     <p class="price">$300.00</p>
@@ -413,7 +445,7 @@ class ProductsPage extends Component {
               <div class="col-md-4">
                 <section class="panel">
                   <div class="pro-img-box">
-                    <img src="http://thevectorlab.net/flatlab/img/product-list/pro1.jpg" alt="" />
+                    <img src="https://via.placeholder.com/279x222" alt="" />
                     <a href="#" class="adtocart">
                       <i class="fa fa-shopping-cart"></i>
                     </a>
@@ -422,7 +454,7 @@ class ProductsPage extends Component {
                   <div class="panel-body text-center">
                     <h4>
                       <a href="#" class="pro-title">
-                        Leopard Shirt Dress
+                        Prpduct Name
                           </a>
                     </h4>
                     <p class="price">$300.00</p>
@@ -432,7 +464,7 @@ class ProductsPage extends Component {
               <div class="col-md-4">
                 <section class="panel">
                   <div class="pro-img-box">
-                    <img src="http://thevectorlab.net/flatlab/img/product-list/pro3.jpg" alt="" />
+                    <img src="https://via.placeholder.com/279x222" alt="" />
                     <a href="#" class="adtocart">
                       <i class="fa fa-shopping-cart"></i>
                     </a>
@@ -441,7 +473,7 @@ class ProductsPage extends Component {
                   <div class="panel-body text-center">
                     <h4>
                       <a href="#" class="pro-title">
-                        Leopard Shirt Dress
+                        Prpduct Name
                           </a>
                     </h4>
                     <p class="price">$300.00</p>
@@ -451,7 +483,7 @@ class ProductsPage extends Component {
               <div class="col-md-4">
                 <section class="panel">
                   <div class="pro-img-box">
-                    <img src="http://thevectorlab.net/flatlab/img/product-list/pro-1.jpg" alt="" />
+                    <img src="https://via.placeholder.com/279x222" alt="" />
                     <a href="#" class="adtocart">
                       <i class="fa fa-shopping-cart"></i>
                     </a>
@@ -460,7 +492,7 @@ class ProductsPage extends Component {
                   <div class="panel-body text-center">
                     <h4>
                       <a href="#" class="pro-title">
-                        Leopard Shirt Dress
+                        Prpduct Name
                           </a>
                     </h4>
                     <p class="price">$300.00</p>
@@ -470,7 +502,7 @@ class ProductsPage extends Component {
               <div class="col-md-4">
                 <section class="panel">
                   <div class="pro-img-box">
-                    <img src="http://thevectorlab.net/flatlab/img/product-list/pro1.jpg" alt="" />
+                    <img src="https://via.placeholder.com/279x222" alt="" />
                     <a href="#" class="adtocart">
                       <i class="fa fa-shopping-cart"></i>
                     </a>
@@ -479,7 +511,7 @@ class ProductsPage extends Component {
                   <div class="panel-body text-center">
                     <h4>
                       <a href="#" class="pro-title">
-                        Leopard Shirt Dress
+                        Prpduct Name
                           </a>
                     </h4>
                     <p class="price">$300.00</p>
@@ -489,7 +521,7 @@ class ProductsPage extends Component {
               <div class="col-md-4">
                 <section class="panel">
                   <div class="pro-img-box">
-                    <img src="http://thevectorlab.net/flatlab/img/product-list/pro3.jpg" alt="" />
+                    <img src="https://via.placeholder.com/279x222" alt="" />
                     <a href="#" class="adtocart">
                       <i class="fa fa-shopping-cart"></i>
                     </a>
@@ -498,7 +530,7 @@ class ProductsPage extends Component {
                   <div class="panel-body text-center">
                     <h4>
                       <a href="#" class="pro-title">
-                        Leopard Shirt Dress
+                        Prpduct Name
                           </a>
                     </h4>
                     <p class="price">$300.00</p>
@@ -508,7 +540,7 @@ class ProductsPage extends Component {
               <div class="col-md-4">
                 <section class="panel">
                   <div class="pro-img-box">
-                    <img src="http://thevectorlab.net/flatlab/img/product-list/pro-1.jpg" alt="" />
+                    <img src="https://via.placeholder.com/279x222" alt="" />
                     <a href="#" class="adtocart">
                       <i class="fa fa-shopping-cart"></i>
                     </a>
@@ -517,17 +549,18 @@ class ProductsPage extends Component {
                   <div class="panel-body text-center">
                     <h4>
                       <a href="#" class="pro-title">
-                        Leopard Shirt Dress
+                        Prpduct Name
                           </a>
                     </h4>
                     <p class="price">$300.00</p>
                   </div>
                 </section>
               </div>
+
               <div class="col-md-4">
                 <section class="panel">
                   <div class="pro-img-box">
-                    <img src="http://thevectorlab.net/flatlab/img/product-list/pro3.jpg" alt="" />
+                    <img src="https://via.placeholder.com/279x222" alt="" />
                     <a href="#" class="adtocart">
                       <i class="fa fa-shopping-cart"></i>
                     </a>
@@ -536,45 +569,7 @@ class ProductsPage extends Component {
                   <div class="panel-body text-center">
                     <h4>
                       <a href="#" class="pro-title">
-                        Leopard Shirt Dress
-                          </a>
-                    </h4>
-                    <p class="price">$300.00</p>
-                  </div>
-                </section>
-              </div>
-              <div class="col-md-4">
-                <section class="panel">
-                  <div class="pro-img-box">
-                    <img src="http://thevectorlab.net/flatlab/img/product-list/pro-1.jpg" alt="" />
-                    <a href="#" class="adtocart">
-                      <i class="fa fa-shopping-cart"></i>
-                    </a>
-                  </div>
-
-                  <div class="panel-body text-center">
-                    <h4>
-                      <a href="#" class="pro-title">
-                        Leopard Shirt Dress
-                          </a>
-                    </h4>
-                    <p class="price">$300.00</p>
-                  </div>
-                </section>
-              </div>
-              <div class="col-md-4">
-                <section class="panel">
-                  <div class="pro-img-box">
-                    <img src="http://thevectorlab.net/flatlab/img/product-list/pro2.jpg" alt="" />
-                    <a href="#" class="adtocart">
-                      <i class="fa fa-shopping-cart"></i>
-                    </a>
-                  </div>
-
-                  <div class="panel-body text-center">
-                    <h4>
-                      <a href="#" class="pro-title">
-                        Leopard Shirt Dress
+                        Prpduct Name
                           </a>
                     </h4>
                     <p class="price">$300.00</p>

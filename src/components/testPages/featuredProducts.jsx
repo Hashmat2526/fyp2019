@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import $ from 'jquery'
-
+import axios from 'axios';
 const FProductsStyle = styled.div`
   .pt-5 , .py-5 {
     padding: 1px !important;
@@ -191,9 +191,26 @@ padding-top:5px;
 `
 
 class FeaturedProducts extends Component {
+  constructor(props) {
+    super(props);
 
+
+    this.state = {
+      response1: []
+
+
+    }
+  };
   componentDidMount() {
-
+    axios.get('http://localhost:2627/feedback')
+      .then((response) => {
+        console.log("All Orders Fetched");
+        console.log(response);
+        this.setState({ response1: response.data });
+      }).catch((e) => {
+        console.log("error:");
+        console.log(e);
+      });
   }
 
   render() {
@@ -214,242 +231,41 @@ class FeaturedProducts extends Component {
             <div class="carousel-inner container">
               <div class="item active">
                 <div class="row">
-                  <div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="slider-item">
-                      <div class="slider-image">
-                        <img src="https://dummyimage.com/250x200/#cccccc/1f1b1f.png" class="img-responsive" alt="a" />
-                      </div>
-                      <div class="slider-main-detail">
-                        <div class="slider-detail">
-                          <div class="product-detail">
-                            <h5>Product Name</h5>
-                            <h5 class="detail-price">$187.87</h5>
+
+
+                  {this.state.response1 != null && this.state.response1.map(function (p, key) {
+                    if (key > 3) { return; }
+                    return (
+                      <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="slider-item">
+                          <div class="slider-image">
+                            <img src="https://dummyimage.com/250x200/#cccccc/1f1b1f.png" class="img-responsive" alt="a" />
                           </div>
-                        </div>
-                        <div class="cart-section">
-                          <div class="row">
-                            <div class="col-md-6 col-sm-12 col-xs-6 review">
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star-o" aria-hidden="true"></i>
-                              <i class="fa fa-star-o" aria-hidden="true"></i>
+                          <div class="slider-main-detail">
+                            <div class="slider-detail">
+                              <div class="product-detail">
+                                <h5>{p.name}</h5>
+                                <h5 class="detail-price">{p.price}</h5>
+                              </div>
                             </div>
-                            <div class="col-md-6 col-sm-12 col-xs-6">
-                              <a href="#" class="AddCart btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="slider-item">
-                      <div class="slider-image">
-                        <img src="https://dummyimage.com/250x200/#cccccc/1f1b1f.png" class="img-responsive" alt="a" />
-                      </div>
-                      <div class="slider-main-detail">
-                        <div class="slider-detail">
-                          <div class="product-detail">
-                            <h5>Product Name</h5>
-                            <h5 class="detail-price">$187.87</h5>
-                          </div>
-                        </div>
-                        <div class="cart-section">
-                          <div class="row">
-                            <div class="col-md-6 col-sm-12 col-xs-6 review">
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star-o" aria-hidden="true"></i>
-                              <i class="fa fa-star-o" aria-hidden="true"></i>
-                            </div>
-                            <div class="col-md-6 col-sm-12 col-xs-6">
-                              <a href="#" class="AddCart btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart</a>
+                            <div class="cart-section">
+                              <div class="row">
+                                <div class="col-md-6 col-sm-12 col-xs-6 review">
+                                  <i class="fa fa-star" aria-hidden="true"></i>
+                                  <i class="fa fa-star" aria-hidden="true"></i>
+                                  <i class="fa fa-star" aria-hidden="true"></i>
+                                  <i class="fa fa-star-o" aria-hidden="true"></i>
+                                  <i class="fa fa-star-o" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-6">
+                                  <a href="#" class="AddCart btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart</a>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="slider-item">
-                      <div class="slider-image">
-                        <img src="https://dummyimage.com/250x200/#cccccc/1f1b1f.png" class="img-responsive" alt="a" />
-                      </div>
-                      <div class="slider-main-detail">
-                        <div class="slider-detail">
-                          <div class="product-detail">
-                            <h5>Product Name</h5>
-                            <h5 class="detail-price">$187.87</h5>
-                          </div>
-                        </div>
-                        <div class="cart-section">
-                          <div class="row">
-                            <div class="col-md-6 col-sm-12 col-xs-6 review">
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star-o" aria-hidden="true"></i>
-                              <i class="fa fa-star-o" aria-hidden="true"></i>
-                            </div>
-                            <div class="col-md-6 col-sm-12 col-xs-6">
-                              <a href="#" class="AddCart btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="slider-item">
-                      <div class="slider-image">
-                        <img src="https://dummyimage.com/250x200/#cccccc/1f1b1f.png" class="img-responsive" alt="a" />
-                      </div>
-                      <div class="slider-main-detail">
-                        <div class="slider-detail">
-                          <div class="product-detail">
-                            <h5>Product Name</h5>
-                            <h5 class="detail-price">$187.87</h5>
-                          </div>
-                        </div>
-                        <div class="cart-section">
-                          <div class="row">
-                            <div class="col-md-6 col-sm-12 col-xs-6 review">
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star-o" aria-hidden="true"></i>
-                              <i class="fa fa-star-o" aria-hidden="true"></i>
-                            </div>
-                            <div class="col-md-6 col-sm-12 col-xs-6">
-                              <a href="#" class="AddCart btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="row">
-                  <div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="slider-item">
-                      <div class="slider-image">
-                        <img src="https://dummyimage.com/250x200/#cccccc/1f1b1f.png" class="img-responsive" alt="a" />
-                      </div>
-                      <div class="slider-main-detail">
-                        <div class="slider-detail">
-                          <div class="product-detail">
-                            <h5>Product Name</h5>
-                            <h5 class="detail-price">$187.87</h5>
-                          </div>
-                        </div>
-                        <div class="cart-section">
-                          <div class="row">
-                            <div class="col-md-6 col-sm-12 col-xs-6 review">
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star-o" aria-hidden="true"></i>
-                              <i class="fa fa-star-o" aria-hidden="true"></i>
-                            </div>
-                            <div class="col-md-6 col-sm-12 col-xs-6">
-                              <a href="#" class="AddCart btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="slider-item">
-                      <div class="slider-image">
-                        <img src="https://dummyimage.com/250x200/#cccccc/1f1b1f.png" class="img-responsive" alt="a" />
-                      </div>
-                      <div class="slider-main-detail">
-                        <div class="slider-detail">
-                          <div class="product-detail">
-                            <h5>Product Name</h5>
-                            <h5 class="detail-price">$187.87</h5>
-                          </div>
-                        </div>
-                        <div class="cart-section">
-                          <div class="row">
-                            <div class="col-md-6 col-sm-12 col-xs-6 review">
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star-o" aria-hidden="true"></i>
-                              <i class="fa fa-star-o" aria-hidden="true"></i>
-                            </div>
-                            <div class="col-md-6 col-sm-12 col-xs-6">
-                              <a href="#" class="AddCart btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="slider-item">
-                      <div class="slider-image">
-                        <img src="https://dummyimage.com/250x200/#cccccc/1f1b1f.png" class="img-responsive" alt="a" />
-                      </div>
-                      <div class="slider-main-detail">
-                        <div class="slider-detail">
-                          <div class="product-detail">
-                            <h5>Product Name</h5>
-                            <h5 class="detail-price">$187.87</h5>
-                          </div>
-                        </div>
-                        <div class="cart-section">
-                          <div class="row">
-                            <div class="col-md-6 col-sm-12 col-xs-6 review">
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star-o" aria-hidden="true"></i>
-                              <i class="fa fa-star-o" aria-hidden="true"></i>
-                            </div>
-                            <div class="col-md-6 col-sm-12 col-xs-6">
-                              <a href="#" class="AddCart btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="slider-item">
-                      <div class="slider-image">
-                        <img src="https://dummyimage.com/250x200/#cccccc/1f1b1f.png" class="img-responsive" alt="a" />
-                      </div>
-                      <div class="slider-main-detail">
-                        <div class="slider-detail">
-                          <div class="product-detail">
-                            <h5>Product Name</h5>
-                            <h5 class="detail-price">$187.87</h5>
-                          </div>
-                        </div>
-                        <div class="cart-section">
-                          <div class="row">
-                            <div class="col-md-6 col-sm-12 col-xs-6 review">
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star-o" aria-hidden="true"></i>
-                              <i class="fa fa-star-o" aria-hidden="true"></i>
-                            </div>
-                            <div class="col-md-6 col-sm-12 col-xs-6">
-                              <a href="#" class="AddCart btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                      </div>);
+                  }, this)}
                 </div>
               </div>
             </div>

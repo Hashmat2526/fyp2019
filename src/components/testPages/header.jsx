@@ -357,6 +357,11 @@ class Header extends Component {
                   </Link>
                   <Link to="/contact"><a href="#" class="nav-item nav-link">Contact</a></Link>
                   <Link to="/checkout"><a href="#" class="nav-item nav-link">Checkout</a></Link>
+
+                  <Link to="/login"><a href="#" style={{ float: "right" }}
+                    class="nav-item nav-link">Login</a></Link>
+                  <Link to="/signup"><a href="#" style={{ float: "right" }}
+                    class="nav-item nav-link">SignUp</a></Link>
                 </ul>
               </div>
             </div>
